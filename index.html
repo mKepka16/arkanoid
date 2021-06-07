@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arkanoid</title>
+    <script
+      src="https://kit.fontawesome.com/a000c72c78.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js" type="module" defer></script>
+    <link rel="stylesheet" href="fonts/fonts.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="checkbox.css" />
+    <link rel="stylesheet" href="contextMenu.css" />
+  </head>
+  <body>
+    <div class="container split">
+      <div class="leftBar">
+        <h2>Menu</h2>
+        <button class="loadMapBtn">Load map</button>
+        <button class="startGameBtn">Start game</button>
+
+        <h2>Score</h2>
+        <span class="score">150</span>
+      </div>
+      <div class="board">
+        <h2>Board</h2>
+        <div class="canvasBox">
+          <div class="gameOver">Game Over</div>
+          <div class="gameWon">You won!</div>
+          <canvas class="boardCanvas"></canvas>
+          <img src="./sprites/border.png" class="boardBorder" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

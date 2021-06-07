@@ -1,0 +1,143 @@
+* {
+  user-select: none;
+  box-sizing: border-box;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI Regular';
+  color: #fff;
+  letter-spacing: 0.1rem;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: #333;
+  font-size: 1.6rem;
+}
+
+img { 
+    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;          /* Firefox                        */
+    image-rendering: -o-crisp-edges;            /* Opera                          */
+    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+    image-rendering: pixelated; /* Chrome */
+    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+
+}
+
+canvas {
+  cursor: pointer;
+  background-color: rgb(91, 123, 228);
+}
+
+.split {
+  display: flex;
+  gap: 2rem;
+}
+
+.container {
+  justify-content: center;
+  margin: 2rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.bgBar__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.arrow {
+  background-color: rgb(91, 123, 228);
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.arrow:hover {
+  background-color: rgb(71, 103, 208);
+}
+
+.leftArrow i {
+  position: relative;
+  left: -0.2rem;
+}
+
+.rightArrow i {
+  position: relative;
+  left: 0.2rem;
+}
+
+.bgCanvas {
+  cursor: default;
+}
+
+.leftBar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+button {
+  background-color: rgb(91, 123, 228);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(71, 103, 208);
+}
+
+.canvasBox {
+  position: relative;
+  top: 80px;
+  left: 90px;
+}
+
+.boardBorder {
+  position: absolute;
+  top: -84px;
+  left: -89px;
+  width: 954px;
+  height: 890px;
+}
+
+.gameOver, .gameWon {
+  position: absolute;
+  top: -84px;
+  left: -89px;
+  width: 954px;
+  height: 890px;
+  background-color: rgba(168, 58, 58, 0.87);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  display: none;
+}
+
+.gameWon {
+  background-color: rgba(43, 165, 43, 0.87);
+}
+
+.score {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: -1rem;
+}
