@@ -99,7 +99,7 @@ class BoardCanvas extends GridCanvas {
       if (!input?.files[0]) return;
       const file = input.files[0];
       const fileReader = new FileReader();
-      fileReader.onload = e => this.loadJSON(e);
+      fileReader.onload = (e) => this.loadJSON(e);
       fileReader.readAsText(file);
     };
   }
@@ -117,9 +117,9 @@ class BoardCanvas extends GridCanvas {
 
   convertJsonMap(oldFormat) {
     this.currentBackground = oldFormat.background;
-    this.grid = oldFormat.grid.map(row =>
+    this.grid = oldFormat.grid.map((row) =>
       row.map(
-        cell =>
+        (cell) =>
           new Block(
             cell.blockId,
             new Vector(cell.x, cell.y),
@@ -142,6 +142,7 @@ class BoardCanvas extends GridCanvas {
     if (this.currentBackground != null)
       this.drawBackground(this.currentBackground);
 
+    let collisionHappend = false;
     const ballGridPosition = this.convertCoords(this.ball.position);
     const xMin = ballGridPosition.col == 0 ? 0 : ballGridPosition.col - 1;
     const yMin = ballGridPosition.row == 0 ? 0 : ballGridPosition.row - 1;
@@ -160,15 +161,24 @@ class BoardCanvas extends GridCanvas {
         // if (col == x && row == y) continue;
         const block = this.grid[row][col];
         if (block.textureId == null) continue;
-        this.doCollision(block);
+        if (!collisionHappend) {
+          if (this.doCollision(block)) {
+            collisionHappend = true;
+          }
+        }
       }
     }
 
     let blockExist = false;
     //Rendering blocks
-    this.loopThroughGrid(block => {
+    this.loopThroughGrid((block) => {
       if (block.textureId == null) return;
-      // this.doCollision(block);
+      // if (!collisionHappend) {
+      //   if (this.doCollision(block)) {
+      //     collisionHappend = true;
+      //     console.log('collision');
+      //   }
+      // }
       this.drawShadow(block.position);
       this.placeBlock(block);
       blockExist = true;
@@ -219,7 +229,7 @@ class BoardCanvas extends GridCanvas {
   doCollision(block) {
     const collisionTuple = this.checkCollision(this.ball, block);
 
-    if (!collisionTuple[0]) return;
+    if (!collisionTuple[0]) return false;
 
     const dir = collisionTuple[1];
     const diffVector = collisionTuple[2];
@@ -242,7 +252,7 @@ class BoardCanvas extends GridCanvas {
       else this.ball.position.x -= penetration;
     }
 
-    if (!(block instanceof Paddle)) return;
+    if (!(block instanceof Paddle)) return true;
     const t = Utils.InverseLerp(
       this.paddle.position.x,
       this.paddle.position.x + this.paddle.width,
@@ -256,6 +266,7 @@ class BoardCanvas extends GridCanvas {
 
     this.ball.velocity.x = xVelocity;
     this.ball.velocity.y = yVelocity;
+    return true;
   }
 
   getVectorDirection(target) {
@@ -264,7 +275,7 @@ class BoardCanvas extends GridCanvas {
       new Vector(0, -1), //up
       new Vector(1, 0), //right
       new Vector(0, 1), //down
-      new Vector(-1, 0) //left
+      new Vector(-1, 0), //left
     ];
 
     let max = 0;
