@@ -15,6 +15,10 @@ class BoardCanvas extends GridCanvas {
     this.startGameBtn.onclick = () => this.startGame();
     this.scoreDiv = document.querySelector('.score');
     this.score = 0;
+    this.mapPresetButtons = document.querySelectorAll('.mapPresetBtn');
+    [...this.mapPresetButtons].map((btn) => {
+      btn.onclick = () => this.loadPreset(btn.dataset.file);
+    });
 
     this.currentMouseCoords;
     this.hasGameStarted = false;
@@ -22,6 +26,14 @@ class BoardCanvas extends GridCanvas {
     this.ball = new Ball(new Vector(388.6, 650));
     this.controls = new Controls();
     this.updateScore();
+  }
+
+  async loadPreset(fileName) {
+    const response = await fetch(`./maps/${fileName}.json`);
+    const boardData = await response.json();
+    this.convertJsonMap(boardData);
+    this.hasGameStarted = true;
+    console.log('preset', fileName, json);
   }
 
   updateScore() {

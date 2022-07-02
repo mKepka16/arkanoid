@@ -18,15 +18,14 @@ body {
   font-size: 1.6rem;
 }
 
-img { 
-    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-    image-rendering: -moz-crisp-edges;          /* Firefox                        */
-    image-rendering: -o-crisp-edges;            /* Opera                          */
-    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-    image-rendering: pixelated; /* Chrome */
-    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
-    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
-
+img {
+  image-rendering: optimizeSpeed; /* STOP SMOOTHING, GIVE ME SPEED  */
+  image-rendering: -moz-crisp-edges; /* Firefox                        */
+  image-rendering: -o-crisp-edges; /* Opera                          */
+  image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
+  image-rendering: pixelated; /* Chrome */
+  image-rendering: optimize-contrast; /* CSS3 Proposed                  */
+  -ms-interpolation-mode: nearest-neighbor; /* IE8+                           */
 }
 
 canvas {
@@ -93,6 +92,7 @@ h2 {
 
 button {
   background-color: rgb(91, 123, 228);
+  width: 100%;
   border: none;
   padding: 1rem 2rem;
   font-size: 2rem;
@@ -117,7 +117,8 @@ button:hover {
   height: 890px;
 }
 
-.gameOver, .gameWon {
+.gameOver,
+.gameWon {
   position: absolute;
   top: -84px;
   left: -89px;
